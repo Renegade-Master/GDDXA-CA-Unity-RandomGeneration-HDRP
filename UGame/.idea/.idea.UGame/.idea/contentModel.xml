@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ciaran Bent\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ciaran Bent\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_UGame.-14904850.00" t="ExcludeRecursive" />
+    <e p="D:\workspaces\PDGE_A_1\UGame" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="_" t="Include">
+          <e p="UnityIconCollective" t="Include">
+            <e p="SnapsArtHDBuriedMemoriesVolume2Serekh" t="Include">
+              <e p="CharacterPack" t="Include">
+                <e p="PropAnims" t="Include">
+                  <e p="MechanicalArm" t="Include">
+                    <e p="MechanicalArmAnimTest.cs" t="Include" />
+                  </e>
+                  <e p="Pod" t="Include">
+                    <e p="Scripts" t="Include">
+                      <e p="PodAnimations.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="ChamberAmbAudioTrigger.cs" t="Include" />
+                  <e p="ExampleHelpWindow.cs" t="Include" />
+                  <e p="KirinAudioPlayer.cs" t="Include" />
+                  <e p="KirinController.cs" t="Include" />
+                  <e p="RandomIdleState.cs" t="Include" />
+                  <e p="SceneCameraTheft.cs" t="Include" />
+                  <e p="ServiceAreaAmbAudioTrigger.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Editor" t="Include">
+                <e p="replace.cs" t="Include" />
+              </e>
+              <e p="Music" t="Include">
+                <e p="Audio Snapshot Exporter" t="Include">
+                  <e p="Editor" t="Include">
+                    <e p="AudioSnapshotExporterEditor.cs" t="Include" />
+                  </e>
+                  <e p="Script" t="Include">
+                    <e p="AudioSnapshotExporter.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="_reference" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="SimpleCameraController.cs" t="Include" />
+          </e>
+          <e p="TutorialInfo" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="ReadmeEditor.cs" t="Include" />
+              </e>
+              <e p="Readme.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="PlayerController.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="UGame.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
