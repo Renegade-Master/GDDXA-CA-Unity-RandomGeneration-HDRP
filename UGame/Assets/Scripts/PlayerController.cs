@@ -38,6 +38,19 @@ public class PlayerController : MonoBehaviour
     {
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
+        
+        // Print the currently pressed button to the console
+        if (Input.anyKeyDown) {
+            foreach (var joystick in Input.GetJoystickNames()) {
+                Debug.Log("Joystick: " + joystick);
+            }
+            
+            for (int i = 0; i < 20; i++) {
+                if (Input.GetKeyDown("joystick button " + i.ToString())) {
+                    print("joystick button " + i.ToString());
+                }
+            }
+        }
 
         // set speed to both vertical and horizontal inputs
         if (useCharacterForward)
@@ -126,6 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hitInfo;
 
+// Only activate in the Editor windows.
 #if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
         Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * groundCheckDistance));
