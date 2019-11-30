@@ -3637,6 +3637,26 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2294263089915671888, guid: 49e78236574b846498e0b01a9fd75fe7,
+        type: 3}
+      propertyPath: runKey
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294263089915671888, guid: 49e78236574b846498e0b01a9fd75fe7,
+        type: 3}
+      propertyPath: jumpKey
+      value: 331
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294263089915671888, guid: 49e78236574b846498e0b01a9fd75fe7,
+        type: 3}
+      propertyPath: slashKey
+      value: 332
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294263089915671888, guid: 49e78236574b846498e0b01a9fd75fe7,
+        type: 3}
+      propertyPath: fireWeapon
+      value: 335
+      objectReference: {fileID: 0}
     - target: {fileID: 7935671150294574289, guid: 49e78236574b846498e0b01a9fd75fe7,
         type: 3}
       propertyPath: m_LocalPosition.z
