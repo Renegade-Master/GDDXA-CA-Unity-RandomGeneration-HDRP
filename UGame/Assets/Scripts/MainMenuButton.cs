@@ -6,7 +6,7 @@ public class MainMenuButton : MonoBehaviour {
     public MainMenuOption menuOption;
     
     private Button _button;
-    private MngrMainMenu _manager;
+    //private MngrMainMenu _manager;
 
     private void Start() {
         _button = GetComponent<Button>();

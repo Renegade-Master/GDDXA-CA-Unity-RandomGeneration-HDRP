@@ -30,7 +30,7 @@ public class LightFlicker : MonoBehaviour {
     private IEnumerator LightPulse() {
         while (SceneManager.GetActiveScene().isLoaded) {
             yield return new WaitForSeconds(0.016f);
-            _timeElapsed += _manager.frameTime;
+            _timeElapsed += _manager.GetFrameTime();
 
             // Establish dim or brighten
             // Change from dim to brighten
