@@ -18,7 +18,7 @@ public class MainMenuButton : MonoBehaviour {
     private void LaunchSelection() {
         switch (menuOption) {
             case MainMenuOption.START_GAME:
-                SceneManager.LoadScene("Level_01");
+                SceneManager.LoadScene(1);  // Level 01
                 break;
             case MainMenuOption.SETTINGS:
                 Debug.Log("No Settings yet, sorry ¯\\_(ツ)_/¯");
