@@ -13,7 +13,9 @@ public class LightFlicker : MonoBehaviour {
     private LevelManager _manager;
     
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
+        _dimmer = true;
         _light = gameObject.GetComponent<Light>();
         _manager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         
@@ -53,12 +55,12 @@ public class LightFlicker : MonoBehaviour {
                 // Getting darker
                 case true:
                     Debug.Log("Getting Darker");
-                    _light.range = 0.0f;
+                    _light.range -= 0.2f;
                     break;
                 // Getting brighter
                 case false:
                     Debug.Log("Getting Brighter");
-                    _light.range = 25.0f;
+                    _light.range += 0.2f;
                     break;
             }
 
