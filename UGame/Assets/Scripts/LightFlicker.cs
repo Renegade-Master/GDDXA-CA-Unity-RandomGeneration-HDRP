@@ -19,23 +19,18 @@ public class LightFlicker : MonoBehaviour {
         _light = gameObject.GetComponent<Light>();
         _manager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         
-        //Debug.Log("Time now: " + Time.time);
         _timeElapsed = 0.0f;
         StartCoroutine(LightPulse());
     }
 
     // Update is called once per frame
-    void LateUpdate() {
-        //Debug.Log("Updating Time: " + _timeElapsed);
+    void Update() {
     }
 
     private IEnumerator LightPulse() {
-        //Debug.Log("Calling coroutine");
-        
         while (SceneManager.GetActiveScene().isLoaded) {
             yield return new WaitForSeconds(0.016f);
             _timeElapsed += _manager.frameTime;
-            Debug.Log("Time elapsed: " + _timeElapsed);
 
             // Establish dim or brighten
             // Change from dim to brighten
@@ -54,17 +49,13 @@ public class LightFlicker : MonoBehaviour {
             switch (_dimmer) {
                 // Getting darker
                 case true:
-                    Debug.Log("Getting Darker");
                     _light.range -= 0.2f;
                     break;
                 // Getting brighter
                 case false:
-                    Debug.Log("Getting Brighter");
                     _light.range += 0.2f;
                     break;
             }
-
-            Debug.Log("Time elapsed: " + _timeElapsed);
         }
     }
 }

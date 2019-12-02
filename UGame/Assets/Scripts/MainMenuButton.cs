@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuButton : MonoBehaviour {
@@ -10,17 +11,17 @@ public class MainMenuButton : MonoBehaviour {
     private void Start()
     {
         _button = GetComponent<Button>();
-        Debug.Log("Initialising new Button: " + _button.name);
         
         _button.onClick.AddListener(LaunchSelection);
     }
 
     private void LaunchSelection() {
-        Debug.Log("Button " + _button.name + " was pressed.");
         switch (menuOption) {
             case MainMenuOption.START_GAME:
+                SceneManager.LoadScene("Level_01");
                 break;
             case MainMenuOption.SETTINGS:
+                Debug.Log("No Settings yet, sorry ¯\\_(ツ)_/¯");
                 break;
             case MainMenuOption.QUIT:
                 Application.Quit();

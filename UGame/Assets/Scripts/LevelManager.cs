@@ -23,7 +23,6 @@ public class LevelManager : MonoBehaviour {
             
             frameTime = Time.time - _prevFrameTime;
             _prevFrameTime = Time.time;
-            Debug.Log("FrameTime: " + frameTime);
         }
     }
 }
