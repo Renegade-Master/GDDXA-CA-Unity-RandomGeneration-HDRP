@@ -8,8 +8,7 @@ public class MainMenuButton : MonoBehaviour {
     private Button _button;
     private MngrMainMenu _manager;
 
-    private void Start()
-    {
+    private void Start() {
         _button = GetComponent<Button>();
         
         _button.onClick.AddListener(LaunchSelection);
