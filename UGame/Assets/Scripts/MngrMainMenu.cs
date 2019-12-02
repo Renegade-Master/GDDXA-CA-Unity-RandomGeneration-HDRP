@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public enum MainMenuOption {
     START_GAME,
@@ -6,11 +7,11 @@ public enum MainMenuOption {
     QUIT
 }
 
-public class MngrMainMenu : MonoBehaviour {
-    
+public class MngrMainMenu : LevelManager {
+
     // Start is called before the first frame update
     void Start() {
-        
+        StartCoroutine(FrameTime());
     }
 
     // Update is called once per frame

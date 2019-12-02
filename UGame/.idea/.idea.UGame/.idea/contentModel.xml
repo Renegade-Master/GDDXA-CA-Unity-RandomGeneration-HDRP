@@ -61,6 +61,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="LevelManager.cs" t="Include" />
+          <e p="LightFlicker.cs" t="Include" />
           <e p="MainMenuButton.cs" t="Include" />
           <e p="MngrMainMenu.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
