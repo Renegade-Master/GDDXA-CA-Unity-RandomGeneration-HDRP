@@ -23,8 +23,16 @@
         protected override void GenerateLevel() {
             base.GenerateLevel();
             Debug.Log("Congratulations, from Level 01 Manager");
-            
-            
+
+            // Determine where to spawn the rooms
+            List<Vector3> roomLocations = GenerateRoomLocations(startingLevels);
+
+            foreach (var coordinate in roomLocations) {
+                Debug.Log("Room location: " + coordinate);
+
+                var roomType = 0;
+                Instantiate(chambers[roomType], coordinate, chambers[roomType].transform.rotation);
+            }
         }
     }
 }
