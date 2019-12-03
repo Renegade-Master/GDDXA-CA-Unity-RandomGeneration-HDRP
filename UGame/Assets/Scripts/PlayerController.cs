@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-
+public class PlayerController : MonoBehaviour {
+    public bool automated;
     public bool useCharacterForward = false;
     public float turnSpeed = 10f;
     public KeyCode runKey = KeyCode.LeftShift;
@@ -24,51 +23,57 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private float velocity;
 
-    void Start()
-    {
+    void Start() {
         anim = GetComponent<Animator>();
         mainCamera = Camera.main;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    public void SetInput(Vector2 extInput, string extAnimation) {
+        input = extInput;
+        
+        MoveCharacter();
+
+        if (isGrounded) {
+            anim.SetTrigger(extAnimation);
+        } else {
+            anim.ResetTrigger("AttackShoot");
+            anim.ResetTrigger("AttackSlash");
+            anim.ResetTrigger("Jump");
+        }
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
+        if (automated) return;
+        
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
-        
-        // Print the currently pressed button to the console
-        if (Input.anyKeyDown) {
-            foreach (var joystick in Input.GetJoystickNames()) {
-                Debug.Log("Joystick: " + joystick);
-            }
-            
-            for (int i = 0; i < 20; i++) {
-                if (Input.GetKeyDown("joystick button " + i.ToString())) {
-                    print("joystick button " + i.ToString());
-                }
-            }
+
+        MoveCharacter();
+    }
+
+    private void MoveCharacter() {
+        // set speed to both vertical and horizontal inputs
+        if (useCharacterForward) {
+            speed = Mathf.Abs(input.x) + input.y;
+        } else {
+            speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         }
 
-        // set speed to both vertical and horizontal inputs
-        if (useCharacterForward)
-            speed = Mathf.Abs(input.x) + input.y;
-        else
-            speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
-
         //set the default speed to walk speed
-        if (Input.GetKey(runKey))
+        if (Input.GetKey(runKey)) {
             speed = Mathf.Clamp(speed, 0f, 1.0f);
-        else
+        } else {
             speed = Mathf.Clamp(speed, 0f, walkSpeed);
+        }
 
         speed = Mathf.SmoothDamp(anim.GetFloat("Speed"), speed, ref velocity, 0.1f);
         anim.SetFloat("Speed", speed);
-        
-        if (input.y < 0f && useCharacterForward)
+
+        if (input.y < 0f && useCharacterForward) {
             direction = input.y;
-        else
+        } else {
             direction = 0f;
+        }
 
         anim.SetFloat("Direction", direction);
         CheckGroundStatus();
@@ -76,41 +81,44 @@ public class PlayerController : MonoBehaviour
 
 
         //Kirin Actions
-        if (Input.GetKey(jumpKey) && isGrounded == true)
+        if (Input.GetKey(jumpKey) && isGrounded) {
             anim.SetTrigger("Jump");
-        else
+        } else {
             anim.ResetTrigger("Jump");
+        }
 
-        if (Input.GetKey(slashKey) && isGrounded == true)
+        if (Input.GetKey(slashKey) && isGrounded) {
             anim.SetTrigger("AttackSlash");
-        else
+        } else {
             anim.ResetTrigger("AttackSlash");
+        }
 
-        if (Input.GetKey(fireWeapon) && isGrounded == true)
+        if (Input.GetKey(fireWeapon) && isGrounded) {
             anim.SetTrigger("AttackShoot");
-        else
+        } else {
             anim.ResetTrigger("AttackShoot");
+        }
 
         // Update target direction relative to the camera view (or not if the Keep Direction option is checked)
         UpdateTargetDirection();
-        if (input != Vector2.zero && targetDirection.magnitude > 0.1f)
-        {
+        if (input != Vector2.zero && targetDirection.magnitude > 0.1f) {
             Vector3 lookDirection = targetDirection.normalized;
             freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
             var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
             var eulerY = transform.eulerAngles.y;
 
-            if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
+            if (diferenceRotation < 0 || diferenceRotation > 0) {
+                eulerY = freeRotation.eulerAngles.y;
+            }
             var euler = new Vector3(0, eulerY, 0);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * turnSpeedMultiplier * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler),
+                turnSpeed * turnSpeedMultiplier * Time.deltaTime);
         }
     }
 
-    public virtual void UpdateTargetDirection()
-    {
-        if (!useCharacterForward)
-        {
+    public virtual void UpdateTargetDirection() {
+        if (!useCharacterForward) {
             turnSpeedMultiplier = 1f;
             var forward = mainCamera.transform.TransformDirection(Vector3.forward);
             forward.y = 0;
@@ -118,11 +126,10 @@ public class PlayerController : MonoBehaviour
             //get the right-facing direction of the referenceTransform
             var right = mainCamera.transform.TransformDirection(Vector3.right);
 
-            // determine the direction the player will face based on input and the referenceTransform's right and forward directions
+            // determine the direction the player will face based on input and
+            // the referenceTransform's right and forward directions
             targetDirection = input.x * right + input.y * forward;
-        }
-        else
-        {
+        } else {
             turnSpeedMultiplier = 0.2f;
             var forward = transform.TransformDirection(Vector3.forward);
             forward.y = 0;
@@ -133,28 +140,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckGroundStatus()
-    {
+    void CheckGroundStatus() {
         RaycastHit hitInfo;
 
 // Only activate in the Editor windows.
 #if UNITY_EDITOR
         // helper to visualise the ground check ray in the scene view
-        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * groundCheckDistance));
+        Debug.DrawLine(transform.position + (Vector3.up * 0.1f),
+            transform.position + (Vector3.up * 0.1f) + (Vector3.down * groundCheckDistance));
 #endif
         // 0.1f is a small offset to start the ray from inside the character
         // it is also good to note that the transform position in the sample assets is at the base of the character
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, groundCheckDistance))
-        {
-            groundNormal = hitInfo.normal;
-            isGrounded = true;
-            //anim.applyRootMotion = true;
-        }
-        else
-        {
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down,
+            out hitInfo, groundCheckDistance)) {
+                groundNormal = hitInfo.normal;
+                isGrounded = true;
+                //anim.applyRootMotion = true;
+        } else {
             isGrounded = false;
             groundNormal = Vector3.up;
-
         }
     }
 

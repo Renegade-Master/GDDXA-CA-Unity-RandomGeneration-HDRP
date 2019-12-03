@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb8277ab28e04248aaa9ffb47b73aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLevels: 64
+  startingLevels: 25
   placementOffset: 40
   chambers:
   - {fileID: 1241512657526538079, guid: e3038de8e89c1b84cb7ed8829a6237cb, type: 3}
