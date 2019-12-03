@@ -10,12 +10,13 @@
 
     public class MngrMainMenu : LevelManager {
         public List<GameObject> characters;
-        public Vector2 movementSpeed;
         
         private Vector2 noMovement = new Vector2(0.0f,0.0f);
         
         // Start is called before the first frame update
         void Start() {
+            Init();
+
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             

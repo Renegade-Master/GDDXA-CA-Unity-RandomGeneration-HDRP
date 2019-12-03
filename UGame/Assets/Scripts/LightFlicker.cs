@@ -13,8 +13,7 @@ public class LightFlicker : MonoBehaviour {
     private LevelManager _manager;
     
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         _dimmer = true;
         _light = gameObject.GetComponent<Light>();
         _manager = GameObject.Find("LevelManager").GetComponent<LevelManager>();

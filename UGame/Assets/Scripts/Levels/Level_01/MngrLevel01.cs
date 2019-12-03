@@ -4,14 +4,22 @@
 
     public class MngrLevel01 : LevelManager {
         public List<GameObject> chambers;
+        public GameObject victoryCube;
+
+        private List<Vector3> _roomLocations;
+        private System.Random random;
 
         // Start is called before the first frame update
         void Start() {
+            Init();
+            
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             StartCoroutine(FrameTime());
+            random = new System.Random();
 
             GenerateLevel();
+            ChooseDestination();
         }
 
         // Update is called once per frame
@@ -23,18 +31,22 @@
          * Randomly place the Chambers to form the Maze 
          */
         protected override void GenerateLevel() {
-            base.GenerateLevel();
-            Debug.Log("Congratulations, from Level 01 Manager");
-
             // Determine where to spawn the rooms
-            List<Vector3> roomLocations = GenerateRoomLocations(startingLevels);
+            _roomLocations = GenerateRoomLocations(startingLevels);
 
-            foreach (var coordinate in roomLocations) {
-                Debug.Log("Room location: " + coordinate);
-
-                var roomType = 0;
+            foreach (var coordinate in _roomLocations) {
+                var roomType = random.Next(chambers.Count);
                 Instantiate(chambers[roomType], coordinate, chambers[roomType].transform.rotation);
             }
+        }
+
+        /**
+         * Randomly choose a destination Chamber
+         */
+        void ChooseDestination() {
+            int destination = random.Next(_roomLocations.Count);
+
+            Instantiate(victoryCube, _roomLocations[destination], victoryCube.transform.rotation);
         }
     }
 }
