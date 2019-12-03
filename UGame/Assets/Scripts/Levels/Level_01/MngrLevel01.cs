@@ -32,7 +32,7 @@
          */
         protected override void GenerateLevel() {
             // Determine where to spawn the rooms
-            _roomLocations = GenerateRoomLocations(startingLevels);
+            _roomLocations = GenerateRoomLocations(startChamberCount);
 
             foreach (var coordinate in _roomLocations) {
                 var roomType = random.Next(chambers.Count);
