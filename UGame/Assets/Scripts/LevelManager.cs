@@ -28,4 +28,8 @@ public class LevelManager : MonoBehaviour {
             _prevFrameTime = Time.time;
         }
     }
+
+    protected virtual void GenerateLevel() {
+        Debug.Log("Congratulations, from Level Manager Superclass");
+    }
 }
